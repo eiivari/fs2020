@@ -1,0 +1,25 @@
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+palvelin-->selain: main.js
+
+note over selain:
+selain suorittaa javascript koodin, jonka on saanut selaimeplta
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: {"content":"eueuq a s'ti","date":"2021-01-08T21:07:28.104Z"}...]
+
+note over selain:
+tapahtumankäsittelijän ansiosta notet pusketaan ruudulle
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+palvelin-->selain: favicon.ico
+
+note over selain:
+Tuo favico tulee cachesta ? 
+end note

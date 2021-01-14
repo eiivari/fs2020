@@ -2,10 +2,26 @@ import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 
 const Statistics = (props) => {
-  
+  const good = props.good
+  const neutral = props.neutral
+  const negative = props.negative
+  const total = good + neutral + negative
   
   return  (
     <>
+      <p>
+        good {good}
+      <br />
+        neutral {neutral}
+      <br />
+        negative {negative}
+      <br/>
+        all {good+neutral+negative}
+      <br />
+        average {(good-neutral) / (good+neutral+negative) }
+      <br />
+        positive {good/(good+neutral+negative) *100} %
+    </p>
     </>
   )
 } 
@@ -33,20 +49,8 @@ const App = () => {
       <h2>
         Statistics
       </h2>
-      <p>
-        good {good}
-        <br />
-        neutral {neutral}
-        <br />
-        negative {negative}
-        <br/>
-        all {good+neutral+negative}
-        <br />
-        average {(good-neutral) / (good+neutral+negative) }
-        <br />
-        positive {good/(good+neutral+negative) *100} %
-      </p>
-      <Statistics good = {good} />
+
+      <Statistics good = {good} neutral={neutral} negative={negative} />
     </div>
   ) 
 

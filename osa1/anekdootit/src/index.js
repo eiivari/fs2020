@@ -3,14 +3,24 @@ import ReactDOM from 'react-dom'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [vote, setVote] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0)) 
+  // täytetään taulu nollasilla? 
 
   const randomizeNext = () => setSelected(Math.floor(Math.random() * anecdotes.length))
 
+  const voteAnecdote = () => {
+    var copied = {...vote}
+    copied[selected] += 1
+    setVote(copied)
+  }
 
   return (
     <div>
       {props.anecdotes[selected]}
       <br />
+      has {vote[selected]} votes
+      <br />
+      <button onClick={voteAnecdote}>vote</button>
       <button onClick={randomizeNext}>
         next anecdote
       </button>

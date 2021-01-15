@@ -1,6 +1,29 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const Footer = (props) => {
+
+  console.log(props.vote.length)
+
+  var biggestIndex = 0
+  for ( var i = 0; i < props.vote.length; i++) {
+    if (props.vote[i] > props.vote[biggestIndex]) {
+      biggestIndex = i
+    }
+  }
+   
+  
+ 
+
+  return (
+    <>
+      <h2>Anecdote with most votes</h2>
+      { props.anecdotes[biggestIndex] }
+    </>
+  )
+
+} 
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [vote, setVote] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0)) 
@@ -9,13 +32,14 @@ const App = (props) => {
   const randomizeNext = () => setSelected(Math.floor(Math.random() * anecdotes.length))
 
   const voteAnecdote = () => {
-    var copied = {...vote}
+    const copied = [...vote]
     copied[selected] += 1
     setVote(copied)
   }
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       {props.anecdotes[selected]}
       <br />
       has {vote[selected]} votes
@@ -24,6 +48,7 @@ const App = (props) => {
       <button onClick={randomizeNext}>
         next anecdote
       </button>
+      <Footer anecdotes={props.anecdotes} vote={vote} />
     </div>
   )
 }

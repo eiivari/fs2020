@@ -20,6 +20,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Old fashioned Object Oriented Programming',
+        exercises: 25,
+        id: 4
       }
     ]
   }
@@ -37,13 +42,14 @@ const Course = (props) => {
     <>
       <Header course={props.course} />
       <Content parts={props.course.parts} />
+      <Total total={props.course.parts} /> 
     </>
   )
 
 }
 
 const Header = (props) => {
-  console.log(props)
+
   return (
     <>
       <h1>{props.course.name}</h1>
@@ -54,7 +60,6 @@ const Header = (props) => {
 
 const Content = (props) => {
   const courses = props.parts
-  console.log(courses)
  return (
   <ul>
     {courses.map(partti => <Part key={partti.id} part={partti} />)}
@@ -67,8 +72,18 @@ const Content = (props) => {
 }
 
 const Total = (props) => { 
+  const allCourse = props.total
 
-  let total = props.parts[0].exercises + props.parts[1].exercises +props.parts[2].exercises  
+  const total= allCourse.reduce(function(accumulator,currentValue) {
+    return accumulator + currentValue.exercises
+  },0)
+
+
+
+/*
+  allCourse.forEach(kurssi => {
+    total += kurssi.exercises
+  }); */
   //console.log(total)
   return(
     <>
@@ -78,7 +93,7 @@ const Total = (props) => {
   }
 
 const Part = (props) => {
-  console.log(props)
+
   return(
    <>
     <p>{props.part.name} {props.part.exercises}</p>

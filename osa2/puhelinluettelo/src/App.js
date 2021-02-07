@@ -8,17 +8,20 @@ const App = () => {
 
   const addNumber = (event) => {
     event.preventDefault()
-    const personObject = {
-      name: newName,
+    if (persons.some(person => person.name === newName)) {
+      alert(`${newName} is already in the list!`)
+    } else {
+      const personObject = {
+        name: newName,
+      }
+      
+      setPersons(persons.concat(personObject))
+      setNewName('')
     }
-    
-    setPersons(persons.concat(personObject))
-    setNewName('')
-
   } 
 
-  const handleNameChange = (event) => {
-    setNewName(event.target.value)
+  const handleNameChange = (event) => { 
+    setNewName(event.target.value)  
   }
 
    
@@ -37,7 +40,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map(person => <ul> {person.name} </ul>)}
+      {persons.map(person => <ul key={person.name}> {person.name} </ul>)}
       ...
     </div>
   )
